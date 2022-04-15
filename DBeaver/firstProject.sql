@@ -1,5 +1,3 @@
-select *
-	from public.gmv_trend
 
 --실습 1) 거래액 데이터 분석
 --2017년부터 2021년 3월까지의 전자상거래 추정거래액 (단위 : 백만원)
@@ -8,23 +6,59 @@ select *
 --1) 데이터 탐색--------------------------------------------------------------
 
 --STEP 1) 모든 컬럼 추출하기
+select *
+from public.gmv_trend
 
 --STEP 2) 특정 컬럼 추출하기
-
+select category, yyyy, gmv
+from gmv_trend
 
 --STEP 3) 중복값 없이 특정 컬럼 추출하기
-
+select distinct category
+from gmv_trend
 
 
 --2) 특정 연도의 매출 탐색--------------------------------------------------------------
 
 --2-1) 조건이 하나일 때 More Example
 ------a) 숫자열 (between, 대소비교)
+select *
+from gmv_trend
+where yyyy = 2021
+
+select *
+from gmv_trend gt 
+where yyyy >= 2019
+
+select *
+from gmv_trend
+where yyyy between 2017 and 2020
 
 ------b) 문자열 (=, !=, like, in, not in)
 
+select *
+from gmv_trend gt 
+where category = '컴퓨터 및 주변기기'
+
+select *
+from gmv_trend gt 
+where category like '%패션%' --패션이 들어간 데이터 추
+
+
 --2-2) 조건이 여러개일 때--------------------------------------------------------------
 ------a) and 조건
+
+select *
+from gmv_trend
+where category in ('가전·전자·통신기기','서적')
+and yyyy = 2019
+
+------b) or 조건
+
+select *
+from gmv_trend
+where category in ('서적')
+or yyyy != 2019
 
 
 
